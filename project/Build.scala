@@ -14,20 +14,30 @@ object GrenderBuild extends Build {
     id = "grender",
     base = file("."),
     settings = standardSettings,
-    aggregate = Seq(core, example)) dependsOn (core, example)
+    aggregate = Seq(core, jersey))
 
   lazy val core = Project(
-    id = "core",
+    id = "grender-core",
     base = file("core"),
-    settings = standardSettings) dependsOn ("css")
+    settings = standardSettings) dependsOn (css)
 
   lazy val css = Project(
-    id = "css",
+    id = "grender-css",
     base = file("css"),
     settings = standardSettings)
+
+  lazy val jersey = Project(
+    id = "grender-jersey",
+    base = file("jersey"),
+    settings = standardSettings) dependsOn (core)
+
+  lazy val exampleHello = Project(
+    id = "grender-example-hello",
+    base = file("example-hello"),
+    settings = standardSettings) dependsOn (core)
     
-  lazy val example = Project(
-    id = "example",
-    base = file("example"),
-    settings = standardSettings) dependsOn ("core")
+  lazy val exampleJersey = Project(
+    id = "grender-example-jersey",
+    base = file("example-jersey"),
+    settings = standardSettings) dependsOn (core)
 }
