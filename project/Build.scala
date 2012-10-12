@@ -19,7 +19,7 @@ object GrenderBuild extends Build {
   lazy val core = Project(
     id = "core",
     base = file("core"),
-    settings = standardSettings)
+    settings = standardSettings) dependsOn ("selector")
 
   lazy val selector = Project(
     id = "selector",
