@@ -1,13 +1,13 @@
 package org.gribbet.grender.core.component
 
 import xml.{NodeSeq, Text, Elem, Node}
-import org.gribbet.grender.selector.SelectorTransformer
+import org.gribbet.grender.selector.{Selector, SelectorTransformer}
 import org.gribbet.grender.core.resource.ProvideXml
 import org.gribbet.grender.core.xml.NodeWrapper.wrapNode
 
 
 trait Renderer {
-  def render(nodes: NodeSeq): NodeSeq = nodes
+  def render(nodes: NodeSeq): NodeSeq = nodes.map(_.withoutChildNamespace) // Silly Scala XML behavior adds namespaces everywhere
 
   final def render(): NodeSeq = render(NodeSeq.Empty)
 }
@@ -29,14 +29,27 @@ object Parent {
 
 trait Select extends Renderer {
   val selector: String
+
+  abstract override def render(nodes: NodeSeq) =
+    super.render(Selector(selector)(nodes))
+}
+
+object Select {
+  def apply(_selector: String) = new Renderer with Select {
+    val selector = _selector
+  }
+}
+
+trait Transform extends Renderer {
+  val selector: String
   val renderer: Renderer
 
   abstract override def render(nodes: NodeSeq) =
     super.render(SelectorTransformer(selector, renderer.render)(nodes))
 }
 
-object Select {
-  def apply(_selector: String, _renderer: Renderer) = new Renderer with Select {
+object Transform {
+  def apply(_selector: String, _renderer: Renderer) = new Renderer with Transform {
     val selector = _selector
     val renderer = _renderer
   }

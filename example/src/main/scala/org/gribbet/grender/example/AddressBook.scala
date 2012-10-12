@@ -2,9 +2,11 @@ package org.gribbet.grender.example
 
 import org.gribbet.grender.core.component._
 
-case class Contact(name: String, address: String, state: String, city: String, zip: String)
 
 class AddressBook extends Renderer with Parent with Template {
+
+  case class Contact(name: String, address: String, state: String, city: String, zip: String)
+
   val contacts = List(
     Contact(
       name = "Beth J. King",
@@ -25,14 +27,15 @@ class AddressBook extends Renderer with Parent with Template {
       state = "Wisconsin",
       zip = "54862-9272")
   )
+
   val children = Seq(
-    Select(".address-book tbody tr",
+    Transform(".address-book tbody tr",
       Repeat(contacts.map(contact =>
         Parent(
-          Select(".name", Value(contact.name)),
-          Select(".address", Value(contact.address)),
-          Select(".city", Value(contact.city)),
-          Select(".state", Value(contact.state)),
-          Select(".zip", Value(contact.zip))
+          Transform(".name", Value(contact.name)),
+          Transform(".address", Value(contact.address)),
+          Transform(".city", Value(contact.city)),
+          Transform(".state", Value(contact.state)),
+          Transform(".zip", Value(contact.zip))
         )): _*)))
 }

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Layout</title>
+        <meta charset="UTF-8"/>
+    </head>
+
+    <body>
+        <h1>Layout</h1>
+        <div class="body" />
+    </body>
+</html>
