@@ -21,7 +21,7 @@ object GrenderBuild extends Build {
     base = file("core"),
     settings = standardSettings) dependsOn ("css")
 
-  lazy val selector = Project(
+  lazy val css = Project(
     id = "css",
     base = file("css"),
     settings = standardSettings)
