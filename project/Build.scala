@@ -1,5 +1,6 @@
 import sbt._
 import Keys._
+import com.github.siasia.WebPlugin.webSettings
 
 object GrenderBuild extends Build {
   lazy val standardSettings = Defaults.defaultSettings ++ Seq(
@@ -7,8 +8,7 @@ object GrenderBuild extends Build {
     version := "0.1",
     scalaVersion := "2.9.2",
     scalacOptions ++= Seq("-deprecation"),
-    resolvers ++= Seq(
-      "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"))
+    resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/releases/")
 
   lazy val grender = Project(
     id = "grender",
@@ -39,5 +39,11 @@ object GrenderBuild extends Build {
   lazy val exampleJersey = Project(
     id = "grender-example-jersey",
     base = file("example-jersey"),
-    settings = standardSettings) dependsOn (core)
+    settings = standardSettings ++ 
+      webSettings ++
+      Seq(libraryDependencies ++= Seq(
+        "org.mortbay.jetty" % "jetty" % "6.1.22" % "container",
+        "com.sun.jersey" % "jersey-core" % "1.8",
+        "com.sun.jersey" % "jersey-server" % "1.8"
+        ))) dependsOn (core)
 }
