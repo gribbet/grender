@@ -1,7 +1,7 @@
 package org.gribbet.grender.core.component
 
 import xml.{NodeSeq, Text, Elem, Node}
-import org.gribbet.grender.grender.selector.SelectorTransformer
+import org.gribbet.grender.selector.SelectorTransformer
 import org.gribbet.grender.core.resource.ProvideXml
 import org.gribbet.grender.core.xml.NodeWrapper.wrapNode
 
@@ -69,5 +69,18 @@ trait Contain extends Renderer {
 object Contain {
   def apply(_children: Renderer*) = new Renderer with Parent with Contain {
     val children = _children
+  }
+}
+
+trait Repeat extends Renderer {
+  val repeated: Seq[Renderer]
+
+  abstract override def render(nodes: NodeSeq) =
+    super.render(repeated.flatMap(_.render(nodes)))
+}
+
+object Repeat {
+  def apply(_repeated: Renderer*) = new Renderer with Repeat {
+    val repeated = _repeated
   }
 }

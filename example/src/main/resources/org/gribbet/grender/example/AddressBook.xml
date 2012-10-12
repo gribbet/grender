@@ -6,7 +6,7 @@
     </head>
 
     <body>
-        <table>
+        <table class="address-book">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -17,9 +17,13 @@
                 </tr>
             </thead>
             <tbody>
-            <tr>
-                <td></td>
-            </tr>
+                <tr>
+                    <td class="name"/>
+                    <td class="address"/>
+                    <td class="city"/>
+                    <td class="state"/>
+                    <td class="zip"/>
+                </tr>
             </tbody>
         </table>
     </body>
