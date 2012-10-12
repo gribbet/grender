@@ -124,11 +124,11 @@ class CssParser extends CssScanner {
 
 
   //  selectors_group
-  //    : selector [ COMMA S* selector ]*
+  //    : css [ COMMA S* css ]*
 
   def selectors_group = selector ~ rep((COMMA ~ repS) ~> selector)
 
-  //  selector
+  //  css
   //    : simple_selector_sequence [ combinator simple_selector_sequence ]*
 
   def selector = (simple_selector_sequence ~ rep(combinator_simple_selector_sequence)) ^^ {
@@ -255,7 +255,7 @@ class CssParser extends CssScanner {
   //  pseudo
   //    /* '::' starts a pseudo-element, ':' a pseudo-class */
   //    /* Exceptions: :first-line, :first-letter, :before and :after. */
-  //    /* Note that pseudo-elements are restricted to one per selector and */
+  //    /* Note that pseudo-elements are restricted to one per css and */
   //    /* occur only in the last simple_selector_sequence. */
   //    : ':' ':'? [ IDENT | functional_pseudo ]
 

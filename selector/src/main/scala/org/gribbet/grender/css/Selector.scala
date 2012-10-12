@@ -1,4 +1,4 @@
-package org.gribbet.grender.selector
+package org.gribbet.grender.css
 
 import xml.NodeSeq
 

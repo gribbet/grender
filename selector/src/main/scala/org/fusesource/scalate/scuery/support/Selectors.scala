@@ -138,7 +138,7 @@ object AnyElementSelector extends Selector {
 
 
 /**
- * Represents selector: E &gt; F
+ * Represents css: E &gt; F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#child-combinators">description</a>
  */
@@ -149,7 +149,7 @@ case class ChildSelector(childSelector: Selector, ancestorSelector: Selector) ex
 }
 
 /**
- * Represents selector: E F
+ * Represents css: E F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#descendant-combinators">description</a>
  */
@@ -159,7 +159,7 @@ case class DescendantSelector(childSelector: Selector, ancestorSelector: Selecto
   }
 
   /**
-   * recursively match the ancestor selector until we have no more ancestors
+   * recursively match the ancestor css until we have no more ancestors
    */
   protected def matchAncestor(node: Node, ancestors: Seq[Node]): Boolean = {
     ancestorSelector.matches(node, ancestors) || (!ancestors.isEmpty && matchAncestor(ancestors.head, ancestors.tail))
@@ -167,7 +167,7 @@ case class DescendantSelector(childSelector: Selector, ancestorSelector: Selecto
 }
 
 /**
- * Represents selector: E + F
+ * Represents css: E + F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#adjacent-sibling-combinators">description</a>
  */
@@ -191,7 +191,7 @@ case class AdjacentSiblingSelector(childSelector: Selector, ancestorSelector: Se
 }
 
 /**
- * Represents selector: E ~ F
+ * Represents css: E ~ F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#general-sibling-combinators">description</a>
  */

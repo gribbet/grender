@@ -32,7 +32,7 @@ object Selector {
   }
 
   /**
-   * Converts a list of selectors to a single selector on an element
+   * Converts a list of selectors to a single css on an element
    */
   def apply(selectors: Seq[Selector]): Selector = selectors match {
     case s :: Nil => s
@@ -41,14 +41,14 @@ object Selector {
   }
 
   /**
-   * Converts a selector and a list of combinators into a single Selector which is capable of evaluating
+   * Converts a css and a list of combinators into a single Selector which is capable of evaluating
    * itself from right to left on the current node
    */
   def apply(selector: Selector, combinators: Seq[Combinator]): Selector = combinators match {
   // if we had
   // a, (c1, b), (c2, c)
-  // then we should create a selector
-  // of c which then uses c2.selector(b, c1.selector(a))
+  // then we should create a css
+  // of c which then uses c2.css(b, c1.css(a))
 
     case Nil => selector
     case h :: Nil => h.combinatorSelector(selector)
@@ -56,7 +56,7 @@ object Selector {
   }
 
   /**
-   * Returns a selector which returns the childen of the given selector
+   * Returns a css which returns the childen of the given css
    */
   def children(selector: Selector) = ChildrenSelector(selector)
 

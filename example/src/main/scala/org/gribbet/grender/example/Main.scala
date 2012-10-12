@@ -3,7 +3,7 @@ package org.gribbet.grender.example
 /*
  TODO:
  1. Jersey adapter and examples?
- 2. Shorten Contain(
+ 2. Shorten Wrapper(
  */
 object Main extends App {
   Console.println("Hello World example: ")

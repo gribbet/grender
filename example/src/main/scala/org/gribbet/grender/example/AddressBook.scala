@@ -1,9 +1,12 @@
 package org.gribbet.grender.example
 
-import org.gribbet.grender.core.component._
+import org.gribbet.grender.core.renderer._
+import org.gribbet.grender.core.dsl.{Repeat, Value, Select, Group}
+import org.gribbet.grender.core.renderer.Grouper
+import org.gribbet.grender.core.renderer.SelectorTransformer
 
 
-class AddressBook extends Renderer with Parent with Template {
+class AddressBook extends Renderer with Grouper with Templater {
 
   case class Contact(name: String, address: String, state: String, city: String, zip: String)
 
@@ -28,14 +31,14 @@ class AddressBook extends Renderer with Parent with Template {
       zip = "54862-9272")
   )
 
-  val children = Seq(
-    Transform(".address-book tbody tr",
+  val renderers = Seq(
+    Select(".address-book tbody tr",
       Repeat(contacts.map(contact =>
-        Parent(
-          Transform(".name", Value(contact.name)),
-          Transform(".address", Value(contact.address)),
-          Transform(".city", Value(contact.city)),
-          Transform(".state", Value(contact.state)),
-          Transform(".zip", Value(contact.zip))
-        )): _*)))
+        Group(
+          Select(".name", Value(contact.name)),
+          Select(".address", Value(contact.address)),
+          Select(".city", Value(contact.city)),
+          Select(".state", Value(contact.state)),
+          Select(".zip", Value(contact.zip))
+        )))))
 }

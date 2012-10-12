@@ -88,7 +88,7 @@ class Transformer {
   class RuleFactory(selector: Selector) {
 
     /**
-     * Transforms each node found by this selector using the given function
+     * Transforms each node found by this css using the given function
      */
     def apply(fn: Node => NodeSeq): Unit = {
       addRule(selector, new ReplaceRule(fn))
@@ -158,7 +158,7 @@ class Transformer {
 
 
     /**
-     * Sets the given attribute on each matching node found by this selector
+     * Sets the given attribute on each matching node found by this css
      */
     def attribute(name: String, value: String): AttributeRuleFactory = {
       attribute(name).value = value
@@ -244,7 +244,7 @@ case class TransformerBuilder(transformer: Transformer) {
 
 /**
  * A helper class to pimp Scala's XML support to add easy SQuery filtering
- * so that you can perform a CSS3 selector on a [[scala.xml.Node]] or [[scala.xml.NodeSeq]]
+ * so that you can perform a CSS3 css on a [[scala.xml.Node]] or [[scala.xml.NodeSeq]]
  * via <code>xml.$("someSelector")</code>
  */
 case class SXml(nodes: NodeSeq) {

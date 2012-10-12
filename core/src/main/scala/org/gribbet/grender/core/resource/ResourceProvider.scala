@@ -1,7 +1,7 @@
 package org.gribbet.grender.core.resource
 
 import java.net.URL
-import org.gribbet.grender.core.component.Renderer
+import org.gribbet.grender.core.renderer.Renderer
 
 trait ResourceProvider {
   protected def resources(component: Renderer, extension: String): Seq[URL] =

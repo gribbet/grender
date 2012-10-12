@@ -28,19 +28,19 @@ import org.fusesource.scalate.scuery._
 abstract class Combinator() {
 
   /**
-   * Returns the inner most selector; the selector on the RHS of the selector
+   * Returns the inner most css; the css on the RHS of the css
    */
   def childSelector: Selector
 
   /**
-   * Creates a selector using this combinator with the given ancestorSelector
+   * Creates a css using this combinator with the given ancestorSelector
    * which is on the left hand side of the combinator expression
    */
   def combinatorSelector(ancestorSelector: Selector): Selector
 }
 
 /**
- * Represents selector: E F
+ * Represents css: E F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#descendant-combinators">description</a>
  */
@@ -50,7 +50,7 @@ case class DescendantCombinator(childSelector: Selector) extends Combinator {
 }
 
 /**
- * Represents selector: E &gt; F
+ * Represents css: E &gt; F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#child-combinators">description</a>
  */
@@ -60,7 +60,7 @@ case class ChildCombinator(childSelector: Selector) extends Combinator {
 }
 
 /**
- * Represents selector: E + F
+ * Represents css: E + F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#adjacent-sibling-combinators">description</a>
  */
@@ -70,7 +70,7 @@ case class AdjacentSiblingdCombinator(childSelector: Selector) extends Combinato
 }
 
 /**
- * Represents selector: E ~ F
+ * Represents css: E ~ F
  *
  * See the <a href"http://www.w3.org/TR/css3-selectors/#general-sibling-combinators">description</a>
  */
