@@ -29,10 +29,10 @@ class AddressBook extends Renderer with Parent with Template {
     Select(".address-book tbody tr",
       Repeat(contacts.map(contact =>
         Parent(
-          Select(".name", Contain(Value(contact.name))),
-          Select(".address", Contain(Value(contact.address))),
-          Select(".city", Contain(Value(contact.city))),
-          Select(".state", Contain(Value(contact.state))),
-          Select(".zip", Contain(Value(contact.zip)))
+          Select(".name", Value(contact.name)),
+          Select(".address", Value(contact.address)),
+          Select(".city", Value(contact.city)),
+          Select(".state", Value(contact.state)),
+          Select(".zip", Value(contact.zip))
         )): _*)))
 }

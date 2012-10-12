@@ -1,5 +1,10 @@
 package org.gribbet.grender.example
 
+/*
+ TODO:
+ 1. Jersey adapter and examples?
+ 2. Shorten Contain(
+ */
 object Main extends App {
   Console.println("Hello World example: ")
   Console.println(new HelloWorld().render())

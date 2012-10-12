@@ -47,18 +47,20 @@ trait Template extends Renderer {
     super.render(ProvideXml(this).getOrElse(nodes))
 }
 
-trait Value extends Renderer {
-  val value: NodeSeq
+trait Render extends Renderer {
+  val nodes: NodeSeq
 
-  abstract override def render(nodes: NodeSeq) = value
+  abstract override def render(ignore: NodeSeq) = nodes
 }
 
-object Value {
-  def apply(_value: NodeSeq) = new Renderer with Value {
-    val value = _value
+object Render {
+  def apply(_nodes: NodeSeq) = new Renderer with Render {
+    val nodes = _nodes
   }
 
-  def apply(value: String): Value = Value(Text(value))
+  def apply(render: String): Render = Render(Text(render))
+
+  def apply(render: Any): Render = Render(render.toString)
 }
 
 trait Contain extends Renderer {
@@ -70,6 +72,16 @@ object Contain {
   def apply(_children: Renderer*) = new Renderer with Parent with Contain {
     val children = _children
   }
+}
+
+object Value {
+  def apply(_nodes: NodeSeq) = new Renderer with Render with Contain {
+    val nodes = _nodes
+  }
+
+  def apply(render: String): Render = Render(Text(render))
+
+  def apply(render: Any): Render = Render(render.toString)
 }
 
 trait Repeat extends Renderer {

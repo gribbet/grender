@@ -5,7 +5,5 @@ import xml.{NodeSeq, Node, Text}
 
 
 class HelloWorld extends Renderer with Parent with Template {
-  val children = Seq(
-    Select(".message",
-      Contain(Value("Hello World!"))))
+  val children = Seq(Select(".message", Value("Hello World!")))
 }
