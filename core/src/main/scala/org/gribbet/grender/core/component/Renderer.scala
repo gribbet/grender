@@ -27,18 +27,18 @@ object Parent {
   }
 }
 
-// TODO: Other type of selector?
 trait Select extends Renderer {
   val selector: String
+  val renderer: Renderer
 
   abstract override def render(nodes: NodeSeq) =
-    SelectorTransformer(selector, super.render)(nodes)
+    super.render(SelectorTransformer(selector, renderer.render)(nodes))
 }
 
 object Select {
-  def apply(_selector: String, child: Renderer) = new Renderer with Parent with Select {
+  def apply(_selector: String, _renderer: Renderer) = new Renderer with Select {
     val selector = _selector
-    val children = Seq(child)
+    val renderer = _renderer
   }
 }
 
@@ -64,35 +64,37 @@ object Render {
 }
 
 trait Contain extends Renderer {
+  val renderer: Renderer
+
   abstract override def render(nodes: NodeSeq) =
-    nodes.flatMap(node => node.withChildren(super.render(node.child)))
+    super.render(nodes.flatMap(node => node.withChildren(renderer.render(node.child))))
 }
 
 object Contain {
-  def apply(_children: Renderer*) = new Renderer with Parent with Contain {
-    val children = _children
+  def apply(children: Renderer*) = new Renderer with Contain {
+    val renderer = Parent(children: _*)
   }
 }
 
 object Value {
-  def apply(_nodes: NodeSeq) = new Renderer with Render with Contain {
-    val nodes = _nodes
+  def apply(nodes: NodeSeq) = new Renderer with Contain {
+    val renderer = Render(nodes)
   }
 
-  def apply(render: String): Render = Render(Text(render))
+  def apply(render: String): Contain = Value(Text(render))
 
-  def apply(render: Any): Render = Render(render.toString)
+  def apply(render: Any): Contain = Value(render.toString)
 }
 
 trait Repeat extends Renderer {
-  val repeated: Seq[Renderer]
+  val renderers: Seq[Renderer]
 
   abstract override def render(nodes: NodeSeq) =
-    super.render(repeated.flatMap(_.render(nodes)))
+    super.render(renderers.flatMap(_.render(nodes)))
 }
 
 object Repeat {
-  def apply(_repeated: Renderer*) = new Renderer with Repeat {
-    val repeated = _repeated
+  def apply(_renderers: Renderer*) = new Renderer with Repeat {
+    val renderers = _renderers
   }
 }
