@@ -4,5 +4,6 @@ import org.gribbet.grender.core.renderer.Selector
 import org.gribbet.grender.core.renderer.{Selector, Templater, Renderer}
 
 class Body extends Renderer with Selector with Templater {
+  val template = "body"
   val selector = ".body"
 }

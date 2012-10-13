@@ -5,6 +5,7 @@ import org.gribbet.grender.core.dsl._
 import org.gribbet.grender.example.jersey.service.ContactService
 
 class ContactsBody extends Renderer with Renderers with Body {
+  val template = "contacts"
   val renderers = Seq(
     Select(".contacts tbody tr",
       Repeat(ContactService.list.map(contact =>

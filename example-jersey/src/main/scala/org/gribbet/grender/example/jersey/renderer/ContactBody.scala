@@ -6,6 +6,7 @@ import org.gribbet.grender.core.dsl.{Select, Value}
 
 
 class ContactBody(val contact: Contact) extends Renderer with Renderers with Body {
+  val template = "contact"
   val renderers = Seq(
     Select(".name", Value(contact.name)),
     Select(".address", Value(contact.address)),

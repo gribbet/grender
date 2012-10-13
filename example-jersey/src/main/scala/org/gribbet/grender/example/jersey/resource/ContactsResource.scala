@@ -5,6 +5,7 @@ import scala.Array
 import core.{Response, MediaType}
 import org.gribbet.grender.example.jersey.renderer.{ContactBody, ContactsBody, Layout}
 import org.gribbet.grender.example.jersey.service.ContactService
+import org.gribbet.grender.core.resource.ProvideXml
 
 @Path("/contacts")
 class ContactsResource {

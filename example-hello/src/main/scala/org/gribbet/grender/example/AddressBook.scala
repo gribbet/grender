@@ -7,6 +7,7 @@ import org.gribbet.grender.core.renderer.SelectorTransformer
 
 
 class AddressBook extends Renderer with Renderers with Templater {
+  val template = "address-book"
 
   case class Contact(name: String, address: String, state: String, city: String, zip: String)
 
@@ -40,5 +41,5 @@ class AddressBook extends Renderer with Renderers with Templater {
           Select(".city", Value(contact.city)),
           Select(".state", Value(contact.state)),
           Select(".zip", Value(contact.zip))
-        )))))
+        )): _*)))
 }

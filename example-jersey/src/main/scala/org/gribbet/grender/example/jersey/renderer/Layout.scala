@@ -4,6 +4,7 @@ import org.gribbet.grender.core.renderer.{Renderers, Templater, Renderer}
 import org.gribbet.grender.core.dsl.{RemoveClass, AddClass, Select, Group}
 
 class Layout(body: Renderer) extends Renderer with Renderers with Templater {
+  val template = "layout"
   val renderers = Seq(
     Select(".body", body),
     Select(".navigation", Group(

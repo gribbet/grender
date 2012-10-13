@@ -6,5 +6,6 @@ import org.gribbet.grender.core.dsl.{Value, Select}
 
 
 class HelloWorld extends Renderer with Renderers with Templater {
+  val template = "hello-world"
   val renderers = Seq(Select(".message", Value("Hello World!")))
 }
