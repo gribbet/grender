@@ -7,7 +7,7 @@ import org.gribbet.grender.core.xml.NodeWrapper.wrapNode
 trait Renderer {
   def render(nodes: NodeSeq): NodeSeq = nodes.map(_.withoutChildNamespace) // Silly Scala XML behavior adds namespaces everywhere
 
-  final def render(): NodeSeq = render(NodeSeq.Empty)
+  lazy val rendered = render(NodeSeq.Empty)
 }
 
 

@@ -29,21 +29,24 @@ object GrenderBuild extends Build {
   lazy val jersey = Project(
     id = "grender-jersey",
     base = file("jersey"),
-    settings = standardSettings) dependsOn (core)
+    settings = standardSettings ++
+      Seq(libraryDependencies +=
+        "com.sun.jersey" % "jersey-core" % "1.8")
+  ) dependsOn(core)
 
   lazy val exampleHello = Project(
     id = "grender-example-hello",
     base = file("example-hello"),
-    settings = standardSettings) dependsOn (core)
-    
+    settings = standardSettings
+  ) dependsOn (core)
+
   lazy val exampleJersey = Project(
     id = "grender-example-jersey",
     base = file("example-jersey"),
-    settings = standardSettings ++ 
+    settings = standardSettings ++
       webSettings ++
       Seq(libraryDependencies ++= Seq(
         "org.mortbay.jetty" % "jetty" % "6.1.22" % "container",
-        "com.sun.jersey" % "jersey-core" % "1.8",
-        "com.sun.jersey" % "jersey-server" % "1.8"
-        ))) dependsOn (core)
+        "com.sun.jersey" % "jersey-server" % "1.8"))
+  ) dependsOn (core, jersey)
 }
