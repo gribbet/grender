@@ -14,7 +14,10 @@ import xml.dtd.{DocType, PublicID}
 
 @Provider
 class RendererWriter extends MessageBodyWriter[Renderer] {
-  final val encoding = "UTF-8"
+  final val default =
+    <html xmlns="http://www.w3.org/1999/xhtml">
+      <body>No content</body>
+    </html>
 
   def isWriteable(`type`: Class[_],
                   genericType: Type,
@@ -38,7 +41,7 @@ class RendererWriter extends MessageBodyWriter[Renderer] {
     val docType = "<!DOCTYPE html>"
     ReaderWriter.writeToAsString(
       header + docType + Utility.toXML(
-        renderer.rendered.head,
+        if (renderer.rendered.size > 0) renderer.rendered.head else default,
         preserveWhitespace = false,
         minimizeTags = true,
         stripComments = true),
