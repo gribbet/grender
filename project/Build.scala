@@ -35,8 +35,8 @@ object GrenderBuild extends Build {
   ) dependsOn(core)
 
   lazy val exampleHello = Project(
-    id = "grender-example-hello",
-    base = file("example-hello"),
+    id = "grender-example",
+    base = file("example"),
     settings = standardSettings
   ) dependsOn (core)
 
