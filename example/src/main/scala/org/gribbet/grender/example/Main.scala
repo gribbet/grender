@@ -7,37 +7,50 @@ import xml.PrettyPrinter
 object Main extends App {
   val prettyPrinter = new PrettyPrinter(100, 4)
 
-  Console.println("Hello World example: ")
-  Console.println(prettyPrinter.formatNodes(new Renderer with Renderers with Templater {
-    val template = "hello-world"
-    val renderers = Seq(Select(".message", Value("Hello World!")))
-  }.rendered))
+  helloWorldExample
+  addressBookExample
+  layoutExample
 
+  def helloWorldExample() {
+    Console.println("Hello World example: ")
+    Console.println(prettyPrinter.formatNodes(new Renderer with Renderers with Templater {
+      val template = "hello-world"
+      val renderers = Seq(Select(".message", Value("Hello World!")))
+    }.rendered))
+  }
 
-  Console.println("Address Book example: ")
-  Console.println(prettyPrinter.formatNodes(new Renderer with Renderers with Templater {
-    val template = "address-book"
-    val renderers = Seq(
-      Select(".address-book tbody tr",
-        Repeat(Contacts.list.map(contact =>
-          Group(
-            Select(".name", Value(contact.name)),
-            Select(".address", Value(contact.address)),
-            Select(".city", Value(contact.city)),
-            Select(".state", Value(contact.state)),
-            Select(".zip", Value(contact.zip))
-          )): _*)))
-  }.rendered))
+  def addressBookExample() {
+    Console.println("Address Book example: ")
+    Console.println(prettyPrinter.formatNodes(new Renderer with Renderers with Templater {
+      val template = "address-book"
+      val renderers = Seq(
+        Select(".address-book tbody tr",
+          Repeat(Contacts.list.map(contact =>
+            Group(
+              Select(".name", Value(contact.name)),
+              Select(".address", Value(contact.address)),
+              Select(".city", Value(contact.city)),
+              Select(".state", Value(contact.state)),
+              Select(".zip", Value(contact.zip))
+            )): _*)))
+    }.rendered))
+  }
 
+  def layoutExample {
+    Console.println("Layout example: ")
 
-  Console.println("Layout example: ")
-  Console.println(prettyPrinter.formatNodes(new Layout {
-    val body = new Renderer with Selector with Templater {
-      val template = "body"
-      val selector = ".body"
+    abstract class Layout extends Renderer with Renderers with Templater {
+      val body: Renderer
+      val template = "layout"
+      lazy val renderers = Seq(Select(".body", body))
     }
-  }.rendered))
 
-
+    Console.println(prettyPrinter.formatNodes(new Layout {
+      val body = new Renderer with Selector with Templater {
+        val template = "body"
+        val selector = ".body"
+      }
+    }.rendered))
+  }
 }
 

@@ -21,7 +21,7 @@ object Contacts {
       address = "3237 Heather By-pass",
       city = "Radium",
       state = "Wisconsin",
-      zip = "54862-9272")
+      zip = "54862-9272"))
 
   def list() = contacts.toSeq
 }
