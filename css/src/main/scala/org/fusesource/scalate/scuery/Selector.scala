@@ -18,7 +18,6 @@
 package org.fusesource.scalate.scuery
 
 import xml.{Elem, Node, NodeSeq}
-import org.w3c.dom.Attr
 
 /**
  * Implements CSS style selectors

@@ -7,9 +7,7 @@ import javax.ws.rs.core.{MultivaluedMap, MediaType}
 import java.io.OutputStream
 import org.gribbet.grender.core.renderer.Renderer
 import com.sun.jersey.core.util.ReaderWriter
-import xml.{Utility, XML, PrettyPrinter}
-import java.nio.channels.Channels
-import xml.dtd.{DocType, PublicID}
+import xml.Utility
 
 
 @Provider

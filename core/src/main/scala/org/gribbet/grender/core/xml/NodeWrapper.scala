@@ -2,7 +2,6 @@ package org.gribbet.grender.core.xml
 
 import xml._
 import NodeWrapper.wrapNode
-import scala.Null
 
 object NodeWrapper {
   implicit def wrapNode(node: Node) = new NodeWrapper(node)

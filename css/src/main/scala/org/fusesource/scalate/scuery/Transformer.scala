@@ -17,8 +17,8 @@
  */
 package org.fusesource.scalate.scuery
 
-import collection.mutable.{HashMap}
-import xml.{Attribute, Document, Elem, Node, NodeSeq, Null, Text}
+import collection.mutable.HashMap
+import xml.{Document, Elem, Node, NodeSeq, Text}
 import XmlHelper._
 
 /**

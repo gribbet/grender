@@ -19,7 +19,6 @@ package org.fusesource.scalate.scuery
 
 import util.parsing.combinator.RegexParsers
 import util.parsing.input.{CharSequenceReader, NoPosition, Position}
-import org.fusesource.scalate.scuery._
 
 class CssScanner extends RegexParsers {
   override def skipWhitespace = false

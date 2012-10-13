@@ -1,6 +1,6 @@
 package org.gribbet.grender.core.renderer
 
-import xml.{Text, NodeSeq}
+import xml.NodeSeq
 
 trait Replacer extends Renderer {
   val nodes: NodeSeq

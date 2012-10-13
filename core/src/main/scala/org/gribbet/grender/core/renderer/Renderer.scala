@@ -1,7 +1,6 @@
 package org.gribbet.grender.core.renderer
 
 import xml.NodeSeq
-import org.gribbet.grender.core.xml.NodeWrapper.wrapNode
 
 
 abstract class Renderer {

@@ -1,7 +1,7 @@
 package org.gribbet.grender.core.dsl
 
 import xml.{Text, NodeSeq}
-import org.gribbet.grender.core.renderer.{Renderer, Wrapper, Replacer}
+import org.gribbet.grender.core.renderer.{Renderer, Wrapper}
 
 
 case class Value(nodes: NodeSeq) extends Renderer with Wrapper {

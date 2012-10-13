@@ -1,7 +1,6 @@
 package org.gribbet.grender.core.resource
 
-import xml.{Node, NodeSeq, Utility, XML}
-import org.gribbet.grender.core.renderer.Renderer
+import xml.{Node, Utility, XML}
 
 object ProvideXml {
   def apply(template: String): Option[Node] =
