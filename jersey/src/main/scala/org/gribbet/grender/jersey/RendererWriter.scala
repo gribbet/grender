@@ -12,10 +12,6 @@ import xml.Utility
 
 @Provider
 class RendererWriter extends MessageBodyWriter[Renderer] {
-  final val default =
-    <html xmlns="http://www.w3.org/1999/xhtml">
-      <body>No content</body>
-    </html>
 
   def isWriteable(`type`: Class[_],
                   genericType: Type,
@@ -45,4 +41,9 @@ class RendererWriter extends MessageBodyWriter[Renderer] {
         stripComments = true),
       entityStream, mediaType)
   }
+
+  private final val default =
+    <html xmlns="http://www.w3.org/1999/xhtml">
+      <body>No content</body>
+    </html>
 }

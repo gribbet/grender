@@ -3,7 +3,7 @@ package org.gribbet.grender.example.jersey.service
 import collection.mutable
 import org.gribbet.grender.example.jersey.domain.Contact
 
-object ContactService {
+object Contacts {
   val contacts = mutable.Map(
     1 -> Contact(
       id = 1,
