@@ -2,11 +2,11 @@ package org.gribbet.grender.example
 
 import org.gribbet.grender.core.renderer._
 import org.gribbet.grender.core.dsl.{Repeat, Value, Select, Group}
-import org.gribbet.grender.core.renderer.Grouper
+import org.gribbet.grender.core.renderer.Renderers
 import org.gribbet.grender.core.renderer.SelectorTransformer
 
 
-class AddressBook extends Renderer with Grouper with Templater {
+class AddressBook extends Renderer with Renderers with Templater {
 
   case class Contact(name: String, address: String, state: String, city: String, zip: String)
 

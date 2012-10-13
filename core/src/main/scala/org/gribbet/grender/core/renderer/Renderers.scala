@@ -3,7 +3,7 @@ package org.gribbet.grender.core.renderer
 import xml.NodeSeq
 
 
-trait Grouper extends Renderer {
+trait Renderers extends Renderer {
   val renderers: Seq[Renderer]
 
   abstract override def render(nodes: NodeSeq) =

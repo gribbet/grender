@@ -4,7 +4,7 @@ import collection.mutable
 import org.gribbet.grender.example.jersey.domain.Contact
 
 object ContactService {
-  var contacts = mutable.Map(
+  val contacts = mutable.Map(
     1 -> Contact(
       id = 1,
       name = "Beth J. King",
@@ -30,9 +30,5 @@ object ContactService {
 
   def list = contacts.values.toSeq
 
-  def find(id: Int) = contacts.get(id)
-
-  def update(contact: Contact) = contacts.put(contact.id, contact)
-
-  def delete(contact: Contact) = contacts.remove(contact.id)
+  def find(id: Int): Option[Contact] = contacts.get(id)
 }

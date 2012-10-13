@@ -2,7 +2,7 @@ package org.gribbet.grender.example.jersey.resource
 
 import javax.ws.rs._
 import scala.Array
-import javax.ws.rs.core.MediaType
+import core.{Response, MediaType}
 import org.gribbet.grender.example.jersey.renderer.{ContactBody, ContactsBody, Layout}
 import org.gribbet.grender.example.jersey.service.ContactService
 
@@ -13,10 +13,11 @@ class ContactsResource {
   def contacts = new Layout(new ContactsBody())
 
   @GET
-  @Path("/{id}")
+  @Path("{id}")
   @Produces(Array(MediaType.APPLICATION_XHTML_XML))
-  def contact(@PathParam("id") id: Int) = new Layout(new ContactBody(id))
-
-  @DELETE
-  def delete(@FormParam("id") id: Int): Unit = ContactService.find(id).map(ContactService.delete(_))
+  def contact(@PathParam("id") id: Int): Response =
+    ContactService.find(id).map(contact =>
+      Response.ok(new Layout(new ContactBody(contact)))
+    ).getOrElse(
+      Response.status(Response.Status.NOT_FOUND)).build()
 }

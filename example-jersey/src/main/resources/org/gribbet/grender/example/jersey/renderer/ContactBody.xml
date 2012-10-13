@@ -14,30 +14,39 @@
             <div class="row">
                 <div class="span9">
                     <div class="body">
-                        <h1>Edit Contact</h1>
-                        <form class="form-horizontal">
+                        <h1>View Contact</h1>
+                        <div class="form-horizontal">
                             <div class="control-group">
-                                <label class="control-label" for="inputEmail">Email</label>
+                                <label class="control-label">Name</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" placeholder="Email"/>
+                                    <span class="name value"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label" for="inputPassword">Password</label>
+                                <label class="control-label">Address</label>
                                 <div class="controls">
-                                    <input type="password" id="inputPassword" placeholder="Password"/>
+                                    <span class="address value"/>
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label">City</label>
                                 <div class="controls">
-                                    <label class="checkbox">
-                                        <input type="checkbox" />
-                                        Remember me
-                                    </label>
-                                    <button type="submit" class="btn">Sign in</button>
+                                    <span class="city value"/>
                                 </div>
                             </div>
-                        </form>
+                            <div class="control-group">
+                                <label class="control-label">State</label>
+                                <div class="controls">
+                                    <span class="state value"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Zip</label>
+                                <div class="controls">
+                                    <span class="zip value"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

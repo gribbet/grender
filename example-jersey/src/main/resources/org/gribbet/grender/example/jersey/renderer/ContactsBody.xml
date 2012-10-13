@@ -34,7 +34,7 @@
                                     <td class="state"/>
                                     <td class="zip"/>
                                     <td class="action">
-                                        <a>Edit</a>
+                                        <a class="view">View</a>
                                     </td>
                                 </tr>
                             </tbody>

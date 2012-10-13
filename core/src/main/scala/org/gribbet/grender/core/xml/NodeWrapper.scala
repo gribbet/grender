@@ -1,7 +1,8 @@
 package org.gribbet.grender.core.xml
 
-import xml.{TopScope, NodeSeq, Elem, Node}
+import xml._
 import NodeWrapper.wrapNode
+import scala.Null
 
 object NodeWrapper {
   implicit def wrapNode(node: Node) = new NodeWrapper(node)
@@ -13,13 +14,21 @@ class NodeWrapper(val node: Node) {
     case _ => node
   }
 
-  def withoutNamespace: Node = node match {
-    case elem: Elem => elem.copy(scope = TopScope, child = elem.child.map(_.withoutNamespace))
+  private def ifElem(map: Elem => Elem) = node match {
+    case elem: Elem => map(elem)
     case _ => node
   }
 
-  def withoutChildNamespace: Node = node match {
-    case elem: Elem => elem.copy(child = elem.child.map(_.withoutNamespace))
-    case _ => node
-  }
+  def withoutNamespace: Node =
+    ifElem((elem: Elem) => elem.copy(scope = TopScope, child = elem.child.map(_.withoutNamespace)))
+
+  def withoutChildNamespace: Node =
+    ifElem((elem: Elem) => elem.copy(child = elem.child.map(_.withoutNamespace)))
+
+  def withAttribute(key: String, value: String): Node =
+    ifElem((elem: Elem) => elem % new UnprefixedAttribute(key, Text(value), Null))
+
+  def withoutAttribute(key: String): Node = node // TODO:
+
+  def attribute(key: String): Option[String] = None // TODO:
 }

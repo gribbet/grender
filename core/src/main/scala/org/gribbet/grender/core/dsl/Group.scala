@@ -1,9 +1,5 @@
 package org.gribbet.grender.core.dsl
 
-import org.gribbet.grender.core.renderer.{Renderer, Grouper}
+import org.gribbet.grender.core.renderer.{Renderer, Renderers}
 
-object Group {
-  def apply(_renderers: Renderer*) = new Renderer with Grouper {
-    val renderers = _renderers
-  }
-}
+case class Group(renderers: Renderer*) extends Renderer with Renderers
