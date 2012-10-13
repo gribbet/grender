@@ -28,7 +28,9 @@ class NodeWrapper(val node: Node) {
   def withAttribute(key: String, value: String): Node =
     ifElem((elem: Elem) => elem % new UnprefixedAttribute(key, Text(value), Null))
 
-  def withoutAttribute(key: String): Node = node // TODO:
+  def withoutAttribute(key: String): Node =
+    ifElem((elem: Elem) => elem.copy(attributes = node.attributes.filter(_.key != key)))
 
-  def attribute(key: String): Option[String] = None // TODO:
+  def attribute2(key: String): Option[String] =
+    node.attribute(key).map(_.toString)
 }
