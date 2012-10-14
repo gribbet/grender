@@ -8,13 +8,13 @@ object GrenderBuild extends Build {
     version := "0.1",
     scalaVersion := "2.9.2",
     scalacOptions ++= Seq("-deprecation"),
-    resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/releases/")
+    resolvers += "Sonatype Releases" at "https://oss.sonatype.org/content/repositories/releases/")
 
   lazy val grender = Project(
     id = "grender",
     base = file("."),
     settings = standardSettings,
-    aggregate = Seq(core, jersey))
+    aggregate = Seq(core, css, jersey))
 
   lazy val core = Project(
     id = "grender-core",
